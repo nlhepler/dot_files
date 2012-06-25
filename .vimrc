@@ -26,7 +26,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
 set history=700
-set foldmethod=syntax
+" set foldmethod=syntax
 
 " Enable filetype plugin
 filetype plugin on
@@ -44,13 +44,13 @@ let g:mapleader = ","
 nmap <leader>w :w!<cr>
 
 " Fast editing of the .vimrc
-map <leader>e :e! ~/.vim_runtime/vimrc<cr>
+map <leader>e :e! ~/.vimrc<cr>
 
 nnoremap <F5> "=strftime("%Y%m%d")<CR>P
 inoremap <F5> <C-R>=strftime("%Y%m%d")<CR>
 
 " When vimrc is edited, reload it
-autocmd! bufwritepost vimrc source ~/.vim_runtime/vimrc
+autocmd! bufwritepost vimrc source ~/.vimrc
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -64,7 +64,7 @@ set wildmenu "Turn on WiLd menu
 
 set ruler "Always show current position
 
-set cmdheight=2 "The commandbar height
+set cmdheight=1 "The commandbar height
 
 set hid "Change buffer - without saving
 
@@ -78,7 +78,7 @@ set smartcase
 set nohlsearch "Highlight search things
 
 set noincsearch "Make search act like search in modern browsers
-set nolazyredraw "Don't redraw while executing macros 
+set nolazyredraw "Don't redraw while executing macros
 
 set magic "Set magic on, for regular expressions
 
@@ -101,10 +101,10 @@ if has("gui_running")
   set guioptions-=T
   set t_Co=256
   set background=dark
-  colorscheme peaksea
+  colorscheme elflord
   set nu
 else
-  colorscheme elflord 
+  colorscheme elflord
   set background=dark
   set nu
 endif
@@ -131,7 +131,7 @@ try
     if MySys() == "windows"
       set undodir=C:\Windows\Temp
     else
-      set undodir=~/.vim_runtime/undodir
+      set undodir=~/.vim/undo
     endif
 
     set undofile
@@ -166,7 +166,6 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
 " When you press gv you vimgrep after the selected text
 vnoremap <silent> gv :call VisualSearch('gv')<CR>
 map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
-
 
 function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
@@ -222,10 +221,9 @@ imap ½ $
 vmap ½ $
 cmap ½ $
 
-
 func! Cwd()
   let cwd = getcwd()
-  return "e " . cwd 
+  return "e " . cwd
 endfunc
 
 func! DeleteTillSlash()
@@ -253,7 +251,7 @@ endfunc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Map space to / (search) and c-space to ? (backgwards search)
+" Map space to / (search) and c-space to ? (backwards search)
 map <space> /
 map <c-space> ?
 map <silent> <leader><cr> :noh<cr>
@@ -278,8 +276,8 @@ map <leader>bd :Bclose<cr>
 map <leader>ba :1,300 bd!<cr>
 
 " Use the arrows to something usefull
-map <right> :bn<cr>
-map <left> :bp<cr>
+" map <right> :bn<cr>
+" map <left> :bp<cr>
 
 " Tab configuration
 map <leader>tn :tabnew<cr>
@@ -311,7 +309,7 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 
-" Specify the behavior when switching between buffers 
+" Specify the behavior when switching between buffers
 try
   set switchbuf=usetab
   set stal=2
@@ -327,7 +325,6 @@ set laststatus=2
 
 " Format the statusline
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
-
 
 function! CurDir()
     let curdir = substitute(getcwd(), '/Users/amir/', "~/", "g")
@@ -407,7 +404,7 @@ map <leader>p :cp<cr>
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Filetypes 
+" => Filetypes
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd BufRead *.as set filetype=actionscript
 autocmd BufRead *.phtml set filetype=php
