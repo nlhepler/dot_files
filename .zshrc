@@ -57,7 +57,7 @@ setopt autolist auto_menu
 bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/sweaver/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -116,8 +116,7 @@ zstyle ':completion:*:kill:*'   force-list always
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
 CDPATH=.:~:~/git
-PATH=$PATH:~/bin
-PATH=/Users/sweaver/QtSDK/Desktop/Qt/4.8.1/gcc/bin:$PATH 
+PATH=~/bin/:$PATH
 
 #I want my umask 0002 if I'm not root
 if [[ $(whoami) = root ]]; then
