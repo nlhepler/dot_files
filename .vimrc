@@ -52,6 +52,10 @@ inoremap <F5> <C-R>=strftime("%Y%m%d")<CR>
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vimrc
 
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface

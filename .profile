@@ -9,6 +9,7 @@ if [ -f `brew --prefix`/etc/bash_completion ]; then
   . `brew --prefix`/etc/bash_completion
 fi
 
+alias med2bib="${HOME}/Software/med2bib.pl"
 alias python="python3.2"
 alias ipython="ipython3"
 
