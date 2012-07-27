@@ -1,0 +1,5 @@
+[user]
+	name = Lance Hepler
+	email = nlhepler@gmail.com
+[core]
+	editor = /usr/bin/vim
