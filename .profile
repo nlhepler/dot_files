@@ -1,4 +1,17 @@
-export PATH=${HOME}/.cabal/bin:/usr/local/bin:/usr/local/sbin:/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home/bin:${PATH}
+
+function addPath () {
+    PATH=${PATH//$1/}
+    PATH=${PATH//::/:}
+    if [ -d "$1" ]; then
+        PATH=$1:${PATH}
+    fi
+}
+
+addPath "/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home/bin"
+addPath "/usr/local/sbin"
+addPath "/usr/local/bin"
+addPath "${HOME}/.cabal/bin"
+export PATH
 
 export CLICOLOR=1
 
