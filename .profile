@@ -1,10 +1,10 @@
 
 function addPath () {
-    PATH=${PATH//$1/}
-    PATH=${PATH//::/:}
-    if [ -d "$1" ]; then
-        PATH=$1:${PATH}
-    fi
+  PATH=${PATH//$1/}
+  PATH=${PATH//::/:}
+  if [ -d "$1" ]; then
+    PATH=$1:${PATH}
+  fi
 }
 
 addPath "/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home/bin"
@@ -18,8 +18,10 @@ export CLICOLOR=1
 export COPY_EXTENDED_ATTRIBUTES_DISABLE=1
 export COPYFILE_DISABLE=1
 
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-  . `brew --prefix`/etc/bash_completion
+if $(which brew &> /dev/null); then
+  if [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
+  fi
 fi
 
 alias adb="${HOME}/Software/android-sdk-macosx/platform-tools/adb"

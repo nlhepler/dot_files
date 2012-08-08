@@ -24,6 +24,8 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set viminfo='100,<1000,s1024,h
+
 " Sets how many lines of history VIM has to remember
 set history=700
 " set foldmethod=syntax
