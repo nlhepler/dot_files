@@ -9,8 +9,8 @@ from Bio import SeqIO
 
 def writeboth(records, fasta, qual):
     for r in records:
-        SeqIO.write([r], fasta, 'fasta')
-        SeqIO.write([r], qual,  'qual')
+        print(r.format('fasta'), file=fasta)
+        print(r.format('qual'),  file=qual)
 
 
 def main(args=None):
