@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+
+import signal, sys
+
+from argparse import ArgumentParser, FileType
+
+from Bio import SeqIO
+from Bio.Seq import Seq
+
+
+def stripgaps(seqs):
+    for s in seqs:
+        newseq = Seq(str(s.seq).replace('-', ''), s.seq.alphabet)
+        s.seq = newseq
+        yield s
+
+
+def main(args=None):
+    if args is None:
+        args = sys.argv[1:]
+
+    try:
+        signal.signal(signal.SIGPIPE, signal.SIG_DFL)
+    except ValueError:
+        pass
+
+    parser = ArgumentParser(description='strip gaps from sequences in a FASTA file')
+    parser.add_argument('input',  metavar='GAPPED',  nargs='?', type=FileType('r'), default=sys.stdin)
+    parser.add_argument('output', metavar='GAPLESS', nargs='?', type=FileType('w'), default=sys.stdout)
+
+    ns = parser.parse_args(args)
+
+    SeqIO.write(stripgaps(SeqIO.parse(ns.input, 'fasta')), ns.output, 'fasta')
+
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

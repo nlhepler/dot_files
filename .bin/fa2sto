@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+
+import sys
+
+from argparse import ArgumentParser, FileType
+
+from Bio import SeqIO
+
+def main(args=None):
+    if args is None:
+        args = sys.argv[1:]
+
+    parser = ArgumentParser(description='convert FASTA file to stockholm')
+    parser.add_argument('input',  metavar='FASTA',     type=FileType('r'), nargs='?', default=sys.stdin)
+    parser.add_argument('output', metavar='STOCKHOLM', type=FileType('w'), nargs='?', default=sys.stdout)
+
+    ns = parser.parse_args(args)
+
+    SeqIO.write(SeqIO.parse(ns.input, 'fasta'), ns.output, 'stockholm')
+
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())
