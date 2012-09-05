@@ -1,0 +1,57 @@
+#!/usr/bin/env python3
+
+import sys
+
+from argparse import ArgumentParser, FileType
+
+from Bio import SeqIO
+from Bio.Alphabet.IUPAC import IUPACAmbiguousDNA
+from Bio.Seq import Seq
+
+from BioExt import by_codon, translate
+
+def untranslate(msa, fna):
+    for aasr, nucsr in zip(msa, fna):
+        nseq = []
+        aaseq = str(aasr.seq)
+        i = 0
+        for cdn in by_codon(str(nucsr.seq).replace('---', '')):
+            while (aaseq[i] == '-'):
+                nseq.append('---')
+                i += 1
+            if translate(cdn).lower() == aaseq[i].lower():
+                nseq.append(cdn)
+                i += 1
+            else:
+                raise RuntimeError('bad translation: codon(%s) aa(%s)' % (cdn, aaseq[i]))
+        aasr.seq = Seq(
+            ''.join(nseq),
+            IUPACAmbiguousDNA
+        )
+        yield aasr
+
+def main(args=None):
+    if args is None:
+        args = sys.argv[1:]
+
+    parser = ArgumentParser(description='untranslate an an amino-acid MSA to nucleotides using a template')
+    parser.add_argument('msa',    metavar='MSA',      type=FileType('r'), nargs='?', default=sys.stdin)
+    parser.add_argument('fna',    metavar='TEMPLATE', type=FileType('r'))
+    parser.add_argument('output', metavar='OUTPUT',   type=FileType('w'), nargs='?', default=sys.stdout)
+
+    ns = parser.parse_args(args)
+
+    SeqIO.write(
+        untranslate(
+            SeqIO.parse(ns.msa, 'fasta'),
+            SeqIO.parse(ns.fna, 'fasta')
+        ),
+        ns.output,
+        'fasta'
+    )
+
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

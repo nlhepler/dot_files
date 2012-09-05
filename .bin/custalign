@@ -1,0 +1,40 @@
+#!/bin/bash
+
+if [ $# -eq 1 ]; then
+    REF='HXB2_env'
+    P='0.7'
+    SEQFILE="$1"
+else
+    if [ $# -eq 2 ]; then
+        REF="HXB2_env"
+        P="$1"
+        SEQFILE="$2"
+    else
+        if [ $# -eq 3 ]; then
+            REF="$1"
+            P="$2"
+            SEQFILE="$3"
+        else
+            echo "usage: custalign [REFERENCE (default: HXB2_env)] [EXPECTED_IDENTITY (default: 0.7)] SEQUENCES"
+            exit 1
+        fi
+    fi
+fi
+
+STDERR=/dev/null
+
+PREFIX=$(echo "${SEQFILE}" | sed -e 's|\.[a-zA-Z]\{3\}$||')
+
+aligner -r "${REF}" -p HIV_BETWEEN_F -e $P "${SEQFILE}" | translate | fa2sto > "${PREFIX}.corrected.sto" 2>${STDERR}
+if [ -s "${PREFIX}.corrected.sto" ]; then
+    aligner -r "${REF}" -I -p HIV_BETWEEN_F -e $P -o "${PREFIX}.corrected.fna" -D "${PREFIX}.discarded.fna" "${SEQFILE}" 2>${STDERR}
+    hmmbuild "${PREFIX}.corrected.hmm" "${PREFIX}.corrected.sto" >${STDERR}
+    translate "${PREFIX}.corrected.fna" | stripgaps > "${PREFIX}.corrected.stripped.faa" 2>${STDERR}
+    hmmalign "${PREFIX}.corrected.hmm" "${PREFIX}.corrected.stripped.faa" | sto2fa | aa2nuc - "${PREFIX}.corrected.fna" "${PREFIX}.corrected.msa.fna"
+else
+    rm "${PREFIX}.corrected.sto"
+    echo "Sequences insufficiently identical to reference, please lower EXPECTED_IDENTITY (from: $P)"
+    exit 1
+fi
+
+exit 0
