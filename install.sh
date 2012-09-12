@@ -1,13 +1,16 @@
+DIR="$( cd "$( dirname "$0" )" && pwd )"
+
 git submodule init
 git submodule update
-# ln -sf ~/.dot_files/.bashrc ~/.bashrc
-ln -sf ~/.dot_files/.profile ~/.profile
+# ln -sf ${DIR}/.bashrc ~/.bashrc
+ln -sf ${DIR}/.profile ~/.profile
 mkdir -p ~/.vim/{undo,autoload}
 mkdir -p ~/.bin
-ln -sf ~/.dot_files/.bin/* ~/.bin
-ln -sf ~/.dot_files/.gitconfig ~/.gitconfig
-ln -sf ~/.dot_files/.vimrc ~/.vimrc
-ln -sf ~/.dot_files/.vim ~/.vim
-ln -sf ~/.dot_files/.tmux.conf ~/.tmux.conf
-ln -sf ~/.dot_files/.zshrc ~/.zshrc
-ln -sf ~/.dot_files/vim-pathogen/autoload/pathogen.vim ~/.vim/autoload/pathogen.vim
+ln -sf ${DIR}/.bin/* ~/.bin
+ln -sf ${DIR}/.gitconfig ~/.gitconfig
+ln -sf ${DIR}/.npmrc ~/.npmrc
+ln -sf ${DIR}/.tmux.conf ~/.tmux.conf
+ln -sf ${DIR}/.vimrc ~/.vimrc
+ln -sf ${DIR}/.vim ~/.vim
+ln -sf ${DIR}/.zshrc ~/.zshrc
+ln -sf ${DIR}/vim-pathogen/autoload/pathogen.vim ~/.vim/autoload/pathogen.vim

@@ -10,6 +10,7 @@ function addPath () {
 addPath "/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home/bin"
 addPath "/usr/local/sbin"
 addPath "/usr/local/bin"
+addPath "/usr/local/share/npm/bin"
 addPath "${HOME}/.cabal/bin"
 addPath "${HOME}/.bin"
 export PATH

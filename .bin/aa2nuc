@@ -12,6 +12,8 @@ from BioExt import by_codon, translate
 
 def untranslate(msa, fna):
     for aasr, nucsr in zip(msa, fna):
+        if aasr.id != nucsr.id:
+            raise RuntimeError('sequence IDs do not match!')
         nseq = []
         aaseq = str(aasr.seq)
         i = 0
