@@ -412,12 +412,12 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Filetypes
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd BufRead *.as set filetype=actionscript
-autocmd BufRead *.phtml set filetype=php
-autocmd BufRead *.pde set filetype=c
-autocmd BufRead *.gcov set filetype=cpp
-autocmd BufRead *.bf set filetype=cpp
-autocmd BufRead *.tpp set filetype=cpp
+autocmd BufRead,BufNewFile *.as set filetype=actionscript
+autocmd BufRead,BufNewFile *.phtml set filetype=php
+autocmd BufRead,BufNewFile *.pde set filetype=c
+autocmd BufRead,BufNewFile *.gcov set filetype=cpp
+autocmd BufRead,BufNewFile *.bf set filetype=cpp
+autocmd BufRead,BufNewFile *.tpp set filetype=cpp
 au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
 
 
