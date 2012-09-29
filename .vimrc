@@ -509,6 +509,7 @@ map <leader>pp :setlocal paste!<cr>
 map <leader>bb :cd ..<cr>
 
 " NERDTree
+let g:NERDTreeWinPos = "right" " open NERDTree on the right
 autocmd vimenter * NERDTree " auto-open NERDTree
 autocmd vimenter * wincmd p " auto-focus to document
 "autocmd vimenter * if !argc() | NERDTree | endif
