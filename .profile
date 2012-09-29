@@ -49,11 +49,16 @@ LIGHT_CYAN="\[\033[1;36m\]"
 WHITE="\[\033[;37m\]"
 LIGHT_WHITE="\[\033[1;37m\]"
 
-NO_COLOR="$(tput setaf 253)"
-OPCOLOR="$(tput setaf 150)"
-STRCOLOR="$(tput setaf 110)"
+if [ -n "${TERM}" ] && $(which tput &> /dev/null); then
+  NO_COLOR="$(tput setaf 253)"
+  OP_COLOR="$(tput setaf 150)"
+  STR_COLOR="$(tput setaf 110)"
+else
+  OP_COLOR="${GREEN}"
+  STR_COLOR="${BLUE}"
+fi
 
-export PS1="${NO_COLOR}[${STRCOLOR}\w${NO_COLOR}] ${OPCOLOR}>>=${NO_COLOR} "
+export PS1="${NO_COLOR}[${STR_COLOR}\w${NO_COLOR}] ${OP_COLOR}>>=${NO_COLOR} "
 
 # export monkeysupreme=lance@137.110.191.175
 # export kingkong=lance@137.110.191.172
