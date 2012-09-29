@@ -16,9 +16,9 @@ addPath "${HOME}/.bin"
 export PATH
 
 export CLICOLOR=1
-
 export COPY_EXTENDED_ATTRIBUTES_DISABLE=1
 export COPYFILE_DISABLE=1
+export NODE_PATH=/usr/local/share/npm/lib/node_modules
 
 if $(which brew &> /dev/null); then
   if [ -f `brew --prefix`/etc/bash_completion ]; then

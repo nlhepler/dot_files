@@ -23,4 +23,3 @@ ln -sf ${DIR}/.npmrc ~/.npmrc
 ln -sf ${DIR}/.tmux.conf ~/.tmux.conf
 ln -sf ${DIR}/.vimrc ~/.vimrc
 ln -sf ${DIR}/.zshrc ~/.zshrc
-ln -sf ${DIR}/vim-pathogen/autoload/pathogen.vim ~/.vim/autoload/pathogen.vim
