@@ -49,7 +49,11 @@ LIGHT_CYAN="\[\033[1;36m\]"
 WHITE="\[\033[;37m\]"
 LIGHT_WHITE="\[\033[1;37m\]"
 
-export PS1="${NO_COLOR}[${CYAN}\w${NO_COLOR}] ${YELLOW}>>=${NO_COLOR} "
+NO_COLOR="$(tput setaf 253)"
+OPCOLOR="$(tput setaf 150)"
+STRCOLOR="$(tput setaf 110)"
+
+export PS1="${NO_COLOR}[${STRCOLOR}\w${NO_COLOR}] ${OPCOLOR}>>=${NO_COLOR} "
 
 # export monkeysupreme=lance@137.110.191.175
 # export kingkong=lance@137.110.191.172

@@ -106,19 +106,15 @@ set tm=500
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-syntax enable "Enable syntax hl
+syntax enable
 
 if has("gui_running")
   set guioptions-=T
   set t_Co=256
-  set background=dark
-  colorscheme lucius
-  set nu
-else
-  colorscheme lucius
-  set background=dark
-  set nu
 endif
+
+colorscheme lucius
+set nu
 
 set encoding=utf8
 try
@@ -443,7 +439,7 @@ map <leader>s? z=
 " => Python section
 """"""""""""""""""""""""""""""
 let python_highlight_all = 1
-au FileType python syn keyword pythonDecorator True None False self
+"au FileType python syn keyword pythonDecorator True None False self
 
 au BufNewFile,BufRead *.py set syntax=python
 au BufNewFile,BufRead *.jinja set syntax=htmljinja
