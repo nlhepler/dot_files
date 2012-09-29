@@ -4,3 +4,6 @@
 [submodule ".vim/bundle/Color-Sampler-Pack"]
 	path = .vim/bundle/Color-Sampler-Pack
 	url = git://github.com/vim-scripts/Color-Sampler-Pack.git
+[submodule ".vim/bundle/vim-pathogen"]
+	path = .vim/bundle/vim-pathogen
+	url = git://github.com/tpope/vim-pathogen.git

@@ -21,6 +21,11 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+"https://github.com/tpope/vim-pathogen.git
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect()
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -107,10 +112,10 @@ if has("gui_running")
   set guioptions-=T
   set t_Co=256
   set background=dark
-  colorscheme elflord
+  colorscheme lucius
   set nu
 else
-  colorscheme elflord
+  colorscheme lucius
   set background=dark
   set nu
 endif
@@ -500,6 +505,3 @@ au BufRead,BufNewFile ~/buffer iab <buffer> xh1 ================================
 map <leader>pp :setlocal paste!<cr>
 
 map <leader>bb :cd ..<cr>
-
-"https://github.com/tpope/vim-pathogen.git
-call pathogen#infect()
