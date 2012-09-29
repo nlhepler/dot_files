@@ -507,3 +507,9 @@ au BufRead,BufNewFile ~/buffer iab <buffer> xh1 ================================
 map <leader>pp :setlocal paste!<cr>
 
 map <leader>bb :cd ..<cr>
+
+" NERDTree
+autocmd vimenter * NERDTree " auto-open NERDTree
+autocmd vimenter * wincmd p " auto-focus to document
+"autocmd vimenter * if !argc() | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif " auto-close if only NERDTree remains
