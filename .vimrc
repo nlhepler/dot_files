@@ -69,7 +69,6 @@ set showmode
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set 7 lines to the curors - when moving vertical..
 set so=7
-set nu
 
 set wildmenu "Turn on WiLd menu
 
@@ -114,6 +113,13 @@ if has("gui_running")
 endif
 
 colorscheme lucius
+
+" the following sets the tabline bg to the same as the
+" LineNr and StatusLine (lucius colorscheme)
+hi TabLine ctermbg=237
+hi TabLineFill ctermbg=237
+hi TabLineSel ctermbg=237
+
 set nu
 
 set encoding=utf8

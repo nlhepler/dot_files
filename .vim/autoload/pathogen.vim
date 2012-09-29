@@ -1,1 +1,0 @@
-/Users/Lance/.dot_files/vim-pathogen/autoload/pathogen.vim
