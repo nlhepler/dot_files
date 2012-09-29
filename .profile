@@ -49,7 +49,7 @@ LIGHT_CYAN="\[\033[1;36m\]"
 WHITE="\[\033[;37m\]"
 LIGHT_WHITE="\[\033[1;37m\]"
 
-if [ -n "${TERM}" ] && $(which tput &> /dev/null); then
+if [ -n "${TERM}" ] && $(which tput &> /dev/null) && [ "$(tput colors)" -ge "256" ]; then
   NO_COLOR="$(tput setaf 253)"
   OP_COLOR="$(tput setaf 150)"
   STR_COLOR="$(tput setaf 110)"
