@@ -25,13 +25,17 @@ STDERR=/dev/null
 
 PREFIX=$(echo "${SEQFILE}" | sed -e 's|\.[a-zA-Z]\{3\}$||')
 
-aligner -r "${REF}" -p HIV_BETWEEN_F -e $P "${SEQFILE}" | translate | fa2sto > "${PREFIX}.corrected.sto" 2>${STDERR}
+NOGAPS="${PREFIX}.nogaps.fna"
+
+stripgaps "${SEQFILE}" > "${NOGAPS}"
+aligner -r "${REF}" -p HIV_BETWEEN_F -e $P "${NOGAPS}" | translate | fa2sto > "${PREFIX}.corrected.sto" 2>${STDERR}
 if [ -s "${PREFIX}.corrected.sto" ]; then
-    aligner -r "${REF}" -I -p HIV_BETWEEN_F -e $P -o "${PREFIX}.corrected.fna" -D "${PREFIX}.discarded.fna" "${SEQFILE}" 2>${STDERR}
+    aligner -r "${REF}" -I -p HIV_BETWEEN_F -e $P -o "${PREFIX}.corrected.fna" -D "${PREFIX}.discarded.fna" "${NOGAPS}" 2>${STDERR}
     hmmbuild "${PREFIX}.corrected.hmm" "${PREFIX}.corrected.sto" >${STDERR}
-    translate "${PREFIX}.corrected.fna" | stripgaps > "${PREFIX}.corrected.stripped.faa" 2>${STDERR}
-    hmmalign "${PREFIX}.corrected.hmm" "${PREFIX}.corrected.stripped.faa" | sto2fa | aa2nuc - "${PREFIX}.corrected.fna" "${PREFIX}.corrected.msa.fna"
+    translate "${PREFIX}.corrected.fna" | stripgaps > "${PREFIX}.corrected.nogaps.faa" 2>${STDERR}
+    hmmalign "${PREFIX}.corrected.hmm" "${PREFIX}.corrected.nogaps.faa" | sto2fa | aa2nuc - "${PREFIX}.corrected.fna" "${PREFIX}.corrected.msa.fna"
 else
+    rm "${NOGAPS}"
     rm "${PREFIX}.corrected.sto"
     echo "Sequences insufficiently identical to reference, please lower EXPECTED_IDENTITY (from: $P)"
     exit 1

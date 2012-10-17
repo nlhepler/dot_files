@@ -25,7 +25,7 @@ def untranslate(msa, fna):
                 nseq.append(cdn)
                 i += 1
             else:
-                raise RuntimeError('bad translation: codon(%s) aa(%s)' % (cdn, aaseq[i]))
+                raise RuntimeError('bad translation: codon(%s) aa(%s) after seq(%s)' % (cdn, aaseq[i], ''.join(nseq)))
         aasr.seq = Seq(
             ''.join(nseq),
             IUPACAmbiguousDNA
