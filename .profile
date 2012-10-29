@@ -50,9 +50,9 @@ WHITE="\[\033[;37m\]"
 LIGHT_WHITE="\[\033[1;37m\]"
 
 if [[ "${TERM}" == *256* ]] && $(which tput &> /dev/null); then
-  NO_COLOR="$(tput setaf 253)"
-  OP_COLOR="$(tput setaf 150)"
-  STR_COLOR="$(tput setaf 110)"
+  NO_COLOR="\[$(tput setaf 253)\]"
+  OP_COLOR="\[$(tput setaf 150)\]"
+  STR_COLOR="\[$(tput setaf 110)\]"
 else
   OP_COLOR="${GREEN}"
   STR_COLOR="${BLUE}"
