@@ -26,9 +26,13 @@ export COPYFILE_DISABLE=1
 export NODE_PATH=/usr/local/share/npm/lib/node_modules
 export GOPATH=${HOME}/Workspaces/go
 
-if $(which brew &> /dev/null); then
+if command -v brew > /dev/null 2>&1; then
   if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
+  fi
+else
+  if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
   fi
 fi
 
