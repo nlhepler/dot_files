@@ -11,6 +11,8 @@ addPath "/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home/bin"
 addPath "/usr/local/sbin"
 addPath "/usr/local/bin"
 addPath "/usr/local/share/npm/bin"
+addPath "/usr/local/share/python3"
+addPath "/usr/local/opt/ruby/bin"
 addPath "${HOME}/.cabal/bin"
 addPath "${HOME}/.bin"
 export PATH
@@ -19,6 +21,7 @@ export CLICOLOR=1
 export COPY_EXTENDED_ATTRIBUTES_DISABLE=1
 export COPYFILE_DISABLE=1
 export NODE_PATH=/usr/local/share/npm/lib/node_modules
+export GOPATH=${HOME}/Workspaces/go
 
 if $(which brew &> /dev/null); then
   if [ -f `brew --prefix`/etc/bash_completion ]; then
@@ -26,9 +29,11 @@ if $(which brew &> /dev/null); then
   fi
 fi
 
+alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
 alias med2bib="${HOME}/Software/med2bib.pl"
-alias python="python3.2"
+# alias python="python3.2"
 alias ipython="ipython3"
+alias smrtanalysis="ssh -L 8081:137.110.191.175:8081 sb"
 
 NO_COLOR="\[\033[0m\]"
 BLACK="\[\033[;30m\]"
@@ -57,7 +62,16 @@ else
   STR_COLOR="${BLUE}"
 fi
 
-export PS1="${NO_COLOR}[${STR_COLOR}\w${NO_COLOR}] ${OP_COLOR}>>=${NO_COLOR} "
+# export GIT_PS1_SHOWDIRTYSTATE=1
+# export GIT_PS1_SHOWSTASHSTATE=1
+# export GIT_PS1_SHOWUNTRACKEDFILES=1
+# export GIT_PS1_SHOWUPSTREAM="auto"
+
+if command -v __git_ps1 > /dev/null 2>&1; then
+  export PS1="( ${NO_COLOR}${STR_COLOR}\w\`__git_ps1 \":%s\"\`${NO_COLOR} ) ${OP_COLOR}>>=${NO_COLOR} "
+else
+  export PS1="( ${NO_COLOR}${STR_COLOR}\w${NO_COLOR} ) ${OP_COLOR}>>=${NO_COLOR} "
+fi
 
 # export monkeysupreme=lance@137.110.191.175
 # export kingkong=lance@137.110.191.172

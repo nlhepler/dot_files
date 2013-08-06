@@ -1,0 +1,19 @@
+#!/bin/sh
+
+if [ "$#" -ne 2 ]; then
+  echo "usage: take #-# FILE"
+  exit 1
+fi
+
+fst=$(echo "$1" | awk -F"-" '{ print $1 }')
+snd=$(echo "$1" | awk -F"-" '{ print $2 }')
+
+if [ "$snd" -ge "$fst" ]; then
+  step=$(expr "$snd" - "$fst")
+  head -"$snd" "$2" | tail -"$step"
+else
+  step=$(expr "$fst" - "$snd")
+  head -"$fst" "$2" | tail -"$step"
+fi
+
+exit 0

@@ -108,6 +108,7 @@ set tm=500
 syntax enable
 
 if has("gui_running")
+  set guifont=Inconsolata-dz:h14
   set guioptions-=T
   set t_Co=256
 endif
