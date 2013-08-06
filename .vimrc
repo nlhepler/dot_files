@@ -108,6 +108,7 @@ set tm=500
 syntax enable
 
 if has("gui_running")
+  set guifont=Inconsolata-dz:h14
   set guioptions-=T
   set t_Co=256
 endif
@@ -425,6 +426,7 @@ autocmd BufRead,BufNewFile *.pde set filetype=c
 autocmd BufRead,BufNewFile *.gcov set filetype=cpp
 autocmd BufRead,BufNewFile *.bf set filetype=cpp
 autocmd BufRead,BufNewFile *.tpp set filetype=cpp
+autocmd BufRead,BufNewFile *.cljs set filetype=clojure
 au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
 
 
