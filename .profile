@@ -71,9 +71,9 @@ fi
 # export GIT_PS1_SHOWUPSTREAM="auto"
 
 if command -v __git_ps1 > /dev/null 2>&1; then
-  export PS1="( ${NO_COLOR}${STR_COLOR}\w\`__git_ps1 \":%s\"\`${NO_COLOR} ) ${OP_COLOR}>>=${NO_COLOR} "
+  export PS1="[${NO_COLOR}${STR_COLOR}\w\`__git_ps1 \":%s\"\`${NO_COLOR}] ${OP_COLOR}>>=${NO_COLOR} "
 else
-  export PS1="( ${NO_COLOR}${STR_COLOR}\w${NO_COLOR} ) ${OP_COLOR}>>=${NO_COLOR} "
+  export PS1="[${NO_COLOR}${STR_COLOR}\w${NO_COLOR}] ${OP_COLOR}>>=${NO_COLOR} "
 fi
 
 # export monkeysupreme=lance@137.110.191.175
