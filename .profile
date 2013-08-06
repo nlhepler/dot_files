@@ -13,6 +13,9 @@ addPath "/usr/local/bin"
 addPath "/usr/local/share/npm/bin"
 addPath "${HOME}/.cabal/bin"
 addPath "${HOME}/.bin"
+addPath "/opt/python-3.3.1/bin"
+addPath "/opt/share/python3.3"
+
 export PATH
 
 export CLICOLOR=1

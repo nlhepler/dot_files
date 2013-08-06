@@ -509,8 +509,9 @@ map <leader>pp :setlocal paste!<cr>
 map <leader>bb :cd ..<cr>
 
 " NERDTree
-let g:NERDTreeWinPos = "right" " open NERDTree on the right
-autocmd vimenter * NERDTree " auto-open NERDTree
-autocmd vimenter * wincmd p " auto-focus to document
+let loaded_nerd_tree = 1
+"let g:NERDTreeWinPos = "right" " open NERDTree on the right
+"autocmd vimenter * NERDTree " auto-open NERDTree
+"autocmd vimenter * wincmd p " auto-focus to document
 "autocmd vimenter * if !argc() | NERDTree | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif " auto-close if only NERDTree remains
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif " auto-close if only NERDTree remains
