@@ -9,6 +9,7 @@ autoload -Uz compinit
 compinit
 
 zstyle ':completion:*' menu select=2
+zstyle ':completion:*:commands' rehash 1
 zstyle ':completion:*:correct:*' insert-unambiguous true
 
 if [ -f ${HOME}/.profile ]; then
