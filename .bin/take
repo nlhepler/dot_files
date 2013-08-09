@@ -9,10 +9,10 @@ fst=$(echo "$1" | awk -F"-" '{ print $1 }')
 snd=$(echo "$1" | awk -F"-" '{ print $2 }')
 
 if [ "$snd" -ge "$fst" ]; then
-  step=$(expr "$snd" - "$fst")
+  step=$(expr "$snd" - "$fst" + 1)
   head -"$snd" "$2" | tail -"$step"
 else
-  step=$(expr "$fst" - "$snd")
+  step=$(expr "$fst" - "$snd" + 1)
   head -"$fst" "$2" | tail -"$step"
 fi
 
